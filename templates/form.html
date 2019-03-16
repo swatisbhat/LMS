@@ -1,0 +1,33 @@
+{% include 'layout.html' %}
+{% load widget_tweaks %}
+
+<div class="container mt-4" style="width: 500px;">
+{% for message in messages %}
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" id="message" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+{% endfor %}
+<form autocomplete="off" action="" method="POST">
+{% csrf_token %}
+{{ form.non_field_errors }}
+
+	{% for field in form %}
+    <div class="form-group">
+
+        <!--{{ field.errors }}-->
+        {% render_field field class="form-control" %}
+        {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+        {% endif %}
+
+    </div>
+
+{% endfor %}
+<div class="form-group">
+			<button class="btn btn-success" id="{{name}}">{{name}}</button>
+     	</div>
+</form>
+</div>

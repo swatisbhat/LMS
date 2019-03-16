@@ -1,0 +1,64 @@
+{% include 'layout.html' %}
+{% load widget_tweaks %}
+
+<div class="container mt-4" style="width: 1200px;">
+<div class="row">
+<div class="col-3">
+{% for message in messages %}
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+{% endfor %}
+<form autocomplete="off" action="" method="GET">
+{% csrf_token %}
+{{ filter.form.non_field_errors }}
+
+  {% for field in filter.form %}
+    <div class="form-group">
+
+        {{ field.errors }}
+        {{field.label}}
+        {% render_field field class="form-control" %}
+        {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+        {% endif %}
+
+    </div>
+
+{% endfor %}
+<div class="form-group">
+      <button class="btn btn-success">Search</button>
+      </div>
+</form>
+</div>
+
+<div class="col-9 mt-4">
+	<table class="table table-striped">
+	 <thead>
+    <tr>
+      <th scope="col">BookID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">YoP</th>
+      <th scope="col">Available</th>
+    </tr>
+  </thead>
+  {% for book in filter.qs %}
+  <tr>
+      <th scope="col">{{book.bookid}}</th>
+      <th scope="col">{{book.title}}</th>
+      <th scope="col">{{book.author}}</th>
+      <th scope="col">{{book.yop}}</th>
+      <th scope="col">{{book.copies}}</th>
+
+  </tr>
+  {% endfor %}
+
+		
+	</table>
+  </div>
+  </div>
+	</div>
