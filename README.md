@@ -1,2 +1,3 @@
 # LMS
-A simple Library Management System built using Django 
+
+A simple Library Management System built using Django
