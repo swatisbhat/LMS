@@ -2,4 +2,5 @@ db.sqlite3
 geckodriver.log
 /LMS/__pycache__
 /mysite/__pycache__
+/LMS/migrations/__pycache__
 
